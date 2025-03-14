@@ -1,4 +1,4 @@
-def binary_search(arr, low, high, x):
+def binary_search(arr=data.arr, low=0, high=len(data.arr), x=data.target):
     if high >= low:
 
         mid = (high + low) // 2

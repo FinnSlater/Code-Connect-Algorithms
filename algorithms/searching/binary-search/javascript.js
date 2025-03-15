@@ -1,5 +1,5 @@
 // note that list must be sorted for this function to work 
-function binarySearch(sortedArray, key){
+function binarySearch(sortedArray=data.arr, key=data.target){
     let start = 0;
     let end = sortedArray.length - 1;
 
@@ -20,4 +20,3 @@ function binarySearch(sortedArray, key){
     // key wasn't found
     return -1;
 }
-console.log("index is: ", binarySearch([-14, 4, 6, 8, 10, 20, 308], 6));

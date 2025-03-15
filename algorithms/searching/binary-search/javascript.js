@@ -1,5 +1,5 @@
 // note that list must be sorted for this function to work 
-function binarySearch(sortedArray=data.arr, key=data.target){
+function binary_search(sortedArray=data["arr"], key=data["target"]){
     let start = 0;
     let end = sortedArray.length - 1;
 

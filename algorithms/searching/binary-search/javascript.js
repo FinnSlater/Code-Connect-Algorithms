@@ -1,6 +1,6 @@
 // input: { arr: [...], target: int }
 function binary_search(input]){
-    const { arr, target } = input
+    const { arr, target } = input;
     let start = 0;
     let end = arr.length - 1;
 

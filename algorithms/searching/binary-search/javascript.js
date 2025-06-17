@@ -1,15 +1,16 @@
-// note that list must be sorted for this function to work 
-function binary_search(sortedArray=data["arr"], key=data["target"]){
+// input: { arr: [...], target: int }
+function binary_search(input]){
+    const { arr, target } = input
     let start = 0;
-    let end = sortedArray.length - 1;
+    let end = arr.length - 1;
 
     while (start <= end) {
         let middle = Math.floor((start + end) / 2);
 
-        if (sortedArray[middle] === key) {
-            // found the key
+        if (arr[middle] === target) {
+            // found the target
             return middle;
-        } else if (sortedArray[middle] < key) {
+        } else if (arr[middle] < target) {
             // continue searching to the right
             start = middle + 1;
         } else {
@@ -17,6 +18,6 @@ function binary_search(sortedArray=data["arr"], key=data["target"]){
             end = middle - 1;
         }
     }
-    // key wasn't found
+    // target wasn't found
     return -1;
 }

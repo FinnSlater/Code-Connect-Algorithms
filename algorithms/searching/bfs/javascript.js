@@ -1,38 +1,53 @@
-// input: { graph: { nodes: [...], edges: [...] }, target: int }
+/**
+ * Performs Breadth-First Search (BFS) on a graph to find the shortest path
+ * from the first node to the target value.
+ *
+ * @param {Object} input - The input object with a graph and target.
+ * @param {Object} input.graph - The graph object containing nodes and edges.
+ * @param {Array} input.graph.nodes - Array of nodes, each with a .value.
+ * @param {Array} input.graph.edges - Array of edges, each with .from and .to values.
+ * @param {number} input.target - The target value to search for.
+ * @returns {Array|null} - An array representing the path to the target, or null if unreachable.
+ */
 function bfs(input) {
   const { graph, target } = input;
   const visited = new Set();
-  const queue = [];
   const parent = {};
+  const queue = [];
 
-  const start = graph.nodes[0];
-  if (start === undefined) return null;
+  // Start from the first node in the list
+  const startNode = graph.nodes[0];
+  if (!startNode) return null;
 
-  queue.push(start);
-  visited.add(start);
-  parent[start] = null;
+  const startValue = startNode.value;
+  queue.push(startValue);
+  visited.add(startValue);
+  parent[startValue] = null;
 
   while (queue.length > 0) {
-    const node = queue.shift();
-    if (node === target) {
-      // reconstruct path from start to target
+    const current = queue.shift();
+
+    // Check if we've reached the target
+    if (current === target) {
       const path = [];
-      let curr = node;
-      while (curr !== null) {
-        path.unshift(curr);
-        curr = parent[curr];
+      let node = current;
+      while (node !== null) {
+        path.unshift(node);
+        node = parent[node];
       }
       return path;
     }
 
+    // Look for all neighbors of the current node
     for (const edge of graph.edges) {
-      if (edge.from === node && !visited.has(edge.to)) {
+      if (edge.from === current && !visited.has(edge.to)) {
         visited.add(edge.to);
-        parent[edge.to] = node;
+        parent[edge.to] = current;
         queue.push(edge.to);
       }
     }
   }
 
-  return null; // target not reachable
+  // Target not reachable
+  return null;
 }
